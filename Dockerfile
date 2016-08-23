@@ -3,10 +3,12 @@ FROM brettt89/silverstripe-web-base:dev
 # Install CWP dependencies
 RUN apt-get update -y && apt-get install -y \
 	libapache2-mod-rpaf \
-	mysql-server 
+	mysql-server \
+	php5-apcu
 
 # Disable default apache configuration
 RUN a2dissite -q 000-default
+RUN a2dismod -f autoindex && a2enmod expires remoteip cgid
 
 # Site name & directory setup
 ENV SITE_DIR=/sites/cwp
