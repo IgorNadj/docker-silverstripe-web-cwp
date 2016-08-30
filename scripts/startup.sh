@@ -1,35 +1,36 @@
 #!/bin/bash
-while [[ $# -gt 1 ]]
-do
-key="$1"
+##########################################################
+##                                                      ##
+##                                                      ##
+##           !!!   DO NOT RUN THIS FILE   !!!           ##
+##                                                      ##
+##                                                      ##
+##########################################################
 
-case $key in
-    -r|--repo)
-    REPO="$2"
-    shift # past argument
-    ;;
-    -b|--branch)
-    BRANCH="$2"
-    shift # past argument
-    ;;
-    -w|--web)
-    WEB_DIR="$2"
-    shift # past argument
-    ;;
-    --default)
-    DEFAULT=YES
-    ;;
-    *)
-            # unknown option
-    ;;
-esac
-shift # past argument or value
-done
-cd "${WEB_DIR}" \
-	&& git clone --branch "${BRANCH}" "${REPO}" "${WEB_DIR}" \
-        && COMPOSER_PROCESS_TIMEOUT=2000 composer install --prefer-dist \
-	&& chown -R www-data:www-data /sites \
-	&& service apache2 restart \
-	&& service mysql restart \
-su - www-data -s /bin/bash -c "php -f ${WEB_DIR}/framework/cli-script.php dev/build"
-/bin/bash
+service apache2 restart > /dev/null 2>&1
+service mysql restart > /dev/null 2>&1
+lsyncd -rsync /sites/src /sites/cwp/www/
+cp -f /root/deploy.sh /sites/scripts/deploy.sh
+cp -f /root/sspak.sh /sites/scripts/sspak.sh
+echo "Webserver is ready 
+
+ Build Database:
+  http://localhost:8888/dev/build
+
+ Your Website:
+  http://localhost:8888
+
+ Database Connection Details:
+  host: locahost
+  port: 333806
+  user: root
+  pass: <blank>
+
+ Scripts and SSPAKs can be found:
+  /silverstripe/web-cwp/scripts
+  /silverstripe/web-cwp/sspak
+
+ Assets and logs can be found:
+  /silverstripe/web-cwp/assets
+  /silverstripe/web-cwp/logs"
+tail -f /dev/null
