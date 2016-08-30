@@ -21,9 +21,9 @@ define('SS_SEND_ALL_EMAILS_TO', '');
 global $_FILE_TO_URL_MAPPING;
 $_FILE_TO_URL_MAPPING['/sites/cwp/www'] = 'http://localhost';
 
-define('SOLR_SERVER', 'solr:password@solr');
-define('SOLR_PORT', '8000');
-define('SOLR_PATH', '/solr');
+define('SOLR_SERVER', 'default-solr:password@solr-cwp');
+define('SOLR_PORT', '80');
+define('SOLR_PATH', '/default-solr');
 define('SOLR_MODE', 'webdav');
-define('SOLR_REMOTEPATH', '/solr');
-define('SOLR_INDEXSTORE_PATH', '/solr/webdav');
+define('SOLR_REMOTEPATH', '/default-solr');
+define('SOLR_INDEXSTORE_PATH', '/default-solr/webdav');
