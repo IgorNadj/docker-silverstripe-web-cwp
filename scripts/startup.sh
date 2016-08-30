@@ -28,5 +28,9 @@ echo "Webserver is ready
 
  Scripts and SSPAKs can be found:
   /silverstripe/web-cwp/scripts
-  /silverstripe/web-cwp/sspak"
+  /silverstripe/web-cwp/sspak
+
+ Assets and logs can be found:
+  /silverstripe/web-cwp/assets
+  /silverstripe/web-cwp/logs"
 tail -f /dev/null
