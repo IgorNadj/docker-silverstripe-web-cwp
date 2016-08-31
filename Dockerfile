@@ -2,6 +2,7 @@ FROM brettt89/silverstripe-web-base:dev
 
 # Install CWP dependencies
 RUN apt-get update -y && apt-get install -y \
+	jq \
 	libapache2-mod-rpaf \
 	lsyncd \
 	mysql-server \
