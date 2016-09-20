@@ -9,9 +9,10 @@ WEB_DIR="/sites/cwp/www"
 COMPOSER_PHPUNIT="${WEB_DIR}/vendor/phpunit/phpunit"
 PHPUNIT="/usr/local/bin/phpunit"
 
-docker exec $CONTAINER script -q /dev/null -c "if [ -f ${COMPOSER_PHPUNIT} ];
+docker exec $CONTAINER script -q /dev/null -c "cd ${WEB_DIR} && 
+if [ -f ${COMPOSER_PHPUNIT} ];
 then
-  ${COMPOSER_PHPUNIT} ${WEB_DIR} $1 $2 $3 $3
+  ${COMPOSER_PHPUNIT} "$@"
 else
-  ${PHPUNIT} ${WEB_DIR} $1 $2 $3 $3
+  ${PHPUNIT} "$@"
 fi"

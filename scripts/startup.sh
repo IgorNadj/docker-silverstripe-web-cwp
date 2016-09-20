@@ -10,7 +10,6 @@
 service apache2 restart > /dev/null 2>&1
 service mysql restart > /dev/null 2>&1
 lsyncd -rsync /sites/src /sites/cwp/www/
-cp -f /root/deploy.sh /sites/scripts/deploy.sh
 cp -f /root/sspak.sh /sites/scripts/sspak.sh
 cp -f /root/phpunit.sh /sites/scripts/phpunit.sh
 echo "Webserver is ready 
