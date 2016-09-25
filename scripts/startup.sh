@@ -7,30 +7,13 @@
 ##                                                      ##
 ##########################################################
 
-service apache2 restart > /dev/null 2>&1
-service mysql restart > /dev/null 2>&1
-lsyncd -rsync /sites/src /sites/cwp/www/
-cp -f /root/deploy.sh /sites/scripts/deploy.sh
-cp -f /root/sspak.sh /sites/scripts/sspak.sh
-echo "Webserver is ready 
+set -e
+NETWORK_PUBLISH_HOST=${NETWORK_PUBLISH_HOST:-`/sbin/ip route|awk '/src/ { print $9 }'`}
 
- Build Database:
-  http://localhost:8888/dev/build
+service apache2 start > /dev/null 2>&1
+service mysql start > /dev/null 2>&1
 
- Your Website:
-  http://localhost:8888
+echo "Webserver is ready"
+echo "http://$NETWORK_PUBLISH_HOST/"
 
- Database Connection Details:
-  host: locahost
-  port: 333806
-  user: root
-  pass: <blank>
-
- Scripts and SSPAKs can be found:
-  /silverstripe/web-cwp/scripts
-  /silverstripe/web-cwp/sspak
-
- Assets and logs can be found:
-  /silverstripe/web-cwp/assets
-  /silverstripe/web-cwp/logs"
 tail -f /dev/null
